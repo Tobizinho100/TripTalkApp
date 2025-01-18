@@ -1,0 +1,34 @@
+<ion-content class="initial-page">
+  <div class="welcome-header">
+    <h2>Favorites</h2>
+    <div class="user-profile">
+      <img src="../assets/imagem/Tobipfp.png" alt="Profile" (click)="goToProfile()">
+    </div>
+  </div>
+
+  <div class="places-list">
+    <ion-card class="place-card" *ngFor="let place of places; let i = index">
+      <ion-img [src]="place.image"></ion-img>
+      <div class="place-info">
+        <h2>{{ place.name }}</h2>
+        <div class="location">
+          <ion-icon name="location-outline"></ion-icon>
+          <p>{{ place.location }}</p>
+        </div>
+        <div class="rating">
+          <ion-icon name="star-outline"></ion-icon>
+          <span>{{ place.rating }}</span>
+        </div>
+      </div>
+
+      <div class="favorite-btn">
+        <ion-icon
+          [name]="favorites[i] ? 'heart' : 'heart-outline'"
+          (click)="toggleFavorite(i)">
+        </ion-icon>
+      </div>
+    </ion-card>
+  </div>
+
+  <app-footer></app-footer>
+</ion-content>

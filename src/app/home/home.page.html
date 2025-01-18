@@ -1,0 +1,61 @@
+<ion-content class="initial-page">
+  <div class="welcome-header">
+    <h2>Hi, Tobi</h2>
+    <p>Explore the world</p>
+
+    <div class="user-profile">
+      <img src="../assets/imagem/Tobipfp.png" alt="Profile" (click)="goToProfile()" />
+    </div>
+  </div>
+
+  <ion-searchbar animated="true" placeholder="Search places"></ion-searchbar>
+
+  <div class="popular-header">
+    <h1>Popular</h1>
+    <button class="view-all">View All</button>
+  </div>
+
+  <div class="button-group">
+    <button
+      (click)="selectButton('mostViews')"
+      [ngClass]="{'active': selectedButton === 'mostViews'}">
+      Most Views
+    </button>
+    <button
+      (click)="selectButton('recent')"
+      [ngClass]="{'active': selectedButton === 'recent'}">
+      Recent
+    </button>
+    <button
+      (click)="selectButton('latest')"
+      [ngClass]="{'active': selectedButton === 'latest'}">
+      Latest
+    </button>
+  </div>
+
+  <div class="places-list">
+    <ion-card class="place-card" *ngFor="let place of places; let index = index">
+      <ion-img [src]="place.image"></ion-img>
+      <div class="place-info">
+        <h2>{{ place.name }}</h2>
+        <div class="location">
+          <ion-icon name="location-outline"></ion-icon>
+          <p>{{ place.location }}</p>
+        </div>
+        <div class="rating">
+          <ion-icon name="star-outline"></ion-icon>
+          <span>{{ place.rating }}</span>
+        </div>
+      </div>
+
+      <div class="favorite-btn">
+        <ion-icon
+          [name]="favorites[index] ? 'heart' : 'heart-outline'"
+          (click)="toggleFavorite(index)">
+        </ion-icon>
+      </div>
+    </ion-card>
+  </div>
+
+  <app-footer></app-footer>
+</ion-content>
